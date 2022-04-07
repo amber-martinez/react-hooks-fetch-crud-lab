@@ -26,7 +26,11 @@ function QuestionForm({ handleAddQuestion }) {
        headers: {
         "Content-Type": "application/json",
        },
-       body: JSON.stringify(formData)
+       body: JSON.stringify({
+         "prompt": formData.prompt,
+         "answers": [formData.answer1, formData.answer2, formData.answer3, formData.answer4],
+         "correctIndex": formData.correctIndex
+       })
      })
      .then((r) => r.json())
      .then((newQuestion) => console.log(newQuestion))

@@ -11,6 +11,11 @@ function QuestionList() {
     .then((data) => setQuestions(data))
   }, [])
 
+  function deleteQuestion(deletedQuestion) {
+    const updatedQuestions = questions.filter((question) => question.id !== deletedQuestion.id);
+    setQuestions(updatedQuestions)
+  }
+
 
   return (
     <section>
@@ -22,7 +27,9 @@ function QuestionList() {
           key={question.id} 
           prompt={question.prompt} 
           answers={question.answers} 
-          correctIndex={question.correctIndex}/>
+          correctIndex={question.correctIndex}
+          onDeleteQuestion={deleteQuestion}
+          />
         ))}
       </ul>
     </section>
